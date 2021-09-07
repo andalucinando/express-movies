@@ -1,7 +1,17 @@
 <h2> The celebrities Page! </h2>
 
+<p> A list of all the celebrities </p>
+
+
 {{#each celebrityList}}
-	<a href="/celebrities/{{_id}}"> View More </a>
-		<p>{{name}} </p>
-	
+    <h2>{{this.name}}</h2>
+    <a href="/celebrities/{{ this._id }}">See Details</a>
+    <form action="/celebrities/{{ this._id }}/delete" method="POST">
+    <a href="/celebrities/{{ this._id }}/edit">Edit</a>
+    <br>
+    <button type="submit">Delete</button>
+    </form>
+
 {{/each}}
+
+<a href="/celebrities/new">Add new celebrity</a>

@@ -1,15 +1,15 @@
-const Celebrity = require("../models/Celebrity");
+const Movie = require("../models/movie");
 
 const router = require("express").Router();
 
 /* GET celebrities page */
 router.get('/', (req, res, next) => {
 	// get all the books from the db
-	Celebrity.find()
-		.then(celebritiesFromDB => {
-			console.log(celebritiesFromDB);
+	movie.find()
+		.then(moviesFromDB => {
+			console.log(moviesFromDB );
 			// console.log('this is the books route');
-			res.render('celebrities/index', { celebrityList: celebritiesFromDB });
+			res.render('movies/index', { movielist: moviesFromDB  });
 		})
 		.catch(err => {
 			// instead of console logging the error we now pass it to the 
@@ -20,13 +20,13 @@ router.get('/', (req, res, next) => {
 
 
 router.get('/new', (req, res, next) => {
-	res.render('celebrities/new.hbs');
+	res.render('movies/new.hbs');
 });
 
 router.get('/:id', (req, res, next) => {
-    Celebrity.findById(req.params.id)
-      .then(celebrity => {
-        res.render('celebrities/show.hbs', { celebrity });
+    movie.findById(req.params.id)
+      .then(movie => {
+        res.render('movies/show.hbs', { movie });
       })
       .catch(err => {
         next(err);
@@ -36,9 +36,9 @@ router.get('/:id', (req, res, next) => {
   
 router.post('/', (req, res, next) => {
     const { name, occupation, catchPhrase } = req.body;
-    Celebrity.create({ name, occupation, catchPhrase })
+    movie.create({ name, occupation, catchPhrase })
       .then(() => {
-        res.redirect('/celebrities');
+        res.redirect('/movies');
       })
       .catch(err => {
         next(err);
@@ -46,9 +46,9 @@ router.post('/', (req, res, next) => {
   });
 
   router.post('/:id/delete', (req, res, next) => {
-    Celebrity.findOneAndDelete({ _id: req.params.id })
+    movie.findOneAndDelete({ _id: req.params.id })
       .then(() => {
-        res.redirect('/celebrities');
+        res.redirect('/movies');
       })
       .catch(err => {
         next(err);
@@ -58,9 +58,9 @@ router.post('/', (req, res, next) => {
 
   
 router.get('/:id/edit', (req, res, next) => {
-    Celebrity.findById(req.params.id)
-      .then(celebrity => {
-        res.render('celebrities/edit', { celebrity });
+    movie.findById(req.params.id)
+      .then(movie => {
+        res.render('movies/edit', { movie });
       })
       .catch(err => {
         next(err);

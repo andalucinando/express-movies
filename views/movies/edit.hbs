@@ -1,0 +1,29 @@
+<h1 style="color: red;">Edit a Celebrity</h1>
+
+<form action="/movies/{{ movie._id}}" method="POST">
+
+  <label for="title">title </label> 
+  <input id="title" type="text" name="movieTitle" value="{{ movie.title}}">
+
+  <br>
+  <br>
+
+  <label for="genre">genre</label> 
+  <input id="genre" type="text" name="genre" value="{{ movie.genre}}">
+
+  <br>
+  <br>
+
+  <label for="plot">Catch plot</label> 
+  <input id="plot" type="text" name="plot" value="{{ movie.plot}}">
+
+  <br>
+  <br>
+
+  <label for="cast"> cast</label> 
+  <input id="cast" type="text" name="cast" value="{{ movie.cast}}">
+
+
+  <button type="submit">Update</button>
+</form>
+
