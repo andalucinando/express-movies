@@ -1,6 +1,20 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: black;
+  
+}
+
+header{
+  background-color: black;
+  size: 200px;
+  border: white;
+  border-radius: auto;
+  border-width: 100px;
+}
+
+p{
+  color: white;
 }
 
 a {
@@ -8,5 +22,13 @@ a {
 }
 
 h1 {
-  color: 15px;
+color: white;
+}
+
+h3{
+  color: white;
+}
+
+.backImage {
+size: 50vh;
 }

@@ -5,11 +5,11 @@ const router = require("express").Router();
 /* GET celebrities page */
 router.get('/', (req, res, next) => {
 	// get all the books from the db
-	movie.find()
+	Movie.find()
 		.then(moviesFromDB => {
 			console.log(moviesFromDB );
 			// console.log('this is the books route');
-			res.render('movies/index', { movielist: moviesFromDB  });
+			res.render('movies/index', { movieList: moviesFromDB  });
 		})
 		.catch(err => {
 			// instead of console logging the error we now pass it to the 
@@ -24,7 +24,7 @@ router.get('/new', (req, res, next) => {
 });
 
 router.get('/:id', (req, res, next) => {
-    movie.findById(req.params.id)
+    Movie.findById(req.params.id)
       .then(movie => {
         res.render('movies/show.hbs', { movie });
       })
@@ -35,8 +35,9 @@ router.get('/:id', (req, res, next) => {
 
   
 router.post('/', (req, res, next) => {
-    const { name, occupation, catchPhrase } = req.body;
-    movie.create({ name, occupation, catchPhrase })
+    const { title, genre, plot, cast } = req.body;
+    console.log(title, genre, plot, cast)
+    Movie.create({title, genre, plot, cast})
       .then(() => {
         res.redirect('/movies');
       })
@@ -46,7 +47,7 @@ router.post('/', (req, res, next) => {
   });
 
   router.post('/:id/delete', (req, res, next) => {
-    movie.findOneAndDelete({ _id: req.params.id })
+    Movie.findOneAndDelete({ _id: req.params.id })
       .then(() => {
         res.redirect('/movies');
       })
@@ -58,7 +59,7 @@ router.post('/', (req, res, next) => {
 
   
 router.get('/:id/edit', (req, res, next) => {
-    movie.findById(req.params.id)
+    Movie.findById(req.params.id)
       .then(movie => {
         res.render('movies/edit', { movie });
       })
